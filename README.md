@@ -2,7 +2,7 @@
   <img src="https://files.catbox.moe/j4wr2m.jpg" width="400" alt="Killua Crash V Bot">
 </p>
 
-# ⚠️ Killua Crash V — Bug Bot
+# ⚠️ Killua Crash V2 — Bug Bot
 
 ## 🧠 Description
 
