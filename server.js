@@ -1,24 +1,32 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Servir les fichiers statiques
-app.use(express.static(path.join(__dirname, 'public')));
+// Route pour générer/valider le code
+app.post('/api/code', (req, res) => {
+  const { code } = req.body;
 
-// Route pour générer le code décoratif à 8 chiffres
-app.get('/api/code', (req, res) => {
-  const letters = Array.from({length:3}, () => String.fromCharCode(65 + Math.floor(Math.random()*26))).join('');
-  const numbers = Math.floor(10000000 + Math.random() * 90000000); // 8 chiffres
-  const code = `243-${letters}-${numbers}`;
-  res.json({ code });
+  if (!code) {
+    return res.status(400).json({ error: 'Aucun code fourni !' });
+  }
+
+  // Exemple de logique : si le code commence par 243, succès
+  if (code.startsWith('243')) {
+    return res.json({ message: `⚡ CODE VALIDE : ${code}` });
+  } else {
+    return res.json({ message: `❌ CODE INVALIDE : ${code}` });
+  }
 });
 
+// Route test
+app.get('/', (req, res) => res.send('Server Killua actif ⚡'));
+
 app.listen(PORT, () => {
-  console.log(`Serveur KILLUA en ligne sur le port ${PORT}`);
+  console.log(`Server démarré sur http://localhost:${PORT}`);
 });
