@@ -11,10 +11,10 @@ app.use(express.json());
 // Servir le frontend
 app.use(express.static(path.join(__dirname, 'public')));
 
-// API pour générer le code
+// API pour générer le code à 8 chiffres
 app.get('/api/code', (req, res) => {
-  const code = '243-KILLUA-' + Math.floor(Math.random() * 900 + 100);
-  res.json({ code });
+  const code = Math.floor(10000000 + Math.random() * 90000000); // 8 chiffres
+  res.json({ code: code.toString() });
 });
 
 // Rediriger toutes les autres requêtes vers index.html
