@@ -4,90 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KILLUA · DARK ÉVEIL</title>
-  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* Ton CSS existant reste inchangé, tu peux coller tout ce que tu avais */
-  </style>
 </head>
+
 <body>
-  <!-- éclairs flottants -->
-  <i class="fa-solid fa-bolt floating-bolt bolt1"></i>
-  <i class="fa-solid fa-bolt floating-bolt bolt2"></i>
-  <i class="fa-solid fa-bolt floating-bolt bolt3"></i>
 
-  <div class="card">
-    <!-- header rapide -->
-    <div class="header">
-      <div class="bot-name">
-        KILLUA <i class="fa-solid fa-bolt"></i>
-      </div>
-      <div class="version">v1.0.0</div>
-    </div>
+<div style="text-align:center; margin-top:100px;">
+  <h1>KILLUA ⚡</h1>
 
-    <!-- killua-crash -->
-    <div class="sub">
-      <i class="fa-regular fa-circle"></i>
-      KILLUA CRASH
-      <i class="fa-regular fa-circle"></i>
-    </div>
+  <input 
+    type="text" 
+    id="codeInput" 
+    value="243"
+    style="padding:10px; font-size:20px;"
+  >
 
-    <!-- éveil du code -->
-    <div class="eveil-block">
-      <div class="eveil-title">
-        <i class="fa-solid fa-bolt"></i> ÉVEIL DU CODE <i class="fa-solid fa-bolt"></i>
-      </div>
+  <br><br>
 
-      <!-- numero field -->
-      <div class="field">
-        <i class="fa-regular fa-hashtag"></i>
-        <input type="text" placeholder="243 ..." id="codeInput" value="243">
-      </div>
+  <button id="getCodeBtn" style="padding:15px; font-size:18px;">
+    OBTENIR ⚡
+  </button>
+</div>
 
-      <!-- bouton -->
-      <button class="btn" id="getCodeBtn">
-        <i class="fa-solid fa-bolt"></i> OBTENIR <i class="fa-solid fa-bolt"></i>
-      </button>
-    </div>
+<script>
+const btn = document.getElementById('getCodeBtn');
+const codeInput = document.getElementById('codeInput');
 
-    <!-- développeur -->
-    <div class="dev">
-      <i class="fa-regular fa-crown"></i>
-      <span>DEV</span>
-      <strong>KILLUA</strong>
-      <i class="fa-regular fa-crown"></i>
-    </div>
-  </div>
+btn.addEventListener('click', async () => {
 
-  <script>
-    const btn = document.getElementById('getCodeBtn');
-    const codeInput = document.getElementById('codeInput');
+  try {
+    const response = await fetch('https://killua-api.onrender.com/api/code');
 
-    btn.addEventListener('mousedown', () => {
-      btn.style.transition = '0.03s';
-    });
-    
-    btn.addEventListener('mouseup', () => {
-      btn.style.transition = '0.1s';
-    });
-    
-    btn.addEventListener('click', async () => {
-      btn.style.backgroundColor = '#1e1433';
-      setTimeout(() => {
-        btn.style.backgroundColor = '';
-      }, 80);
+    if (!response.ok) throw new Error('Erreur serveur');
 
-      try {
-        // Récupération du code depuis le serveur
-        const response = await fetch('/api/code');
-        if (!response.ok) throw new Error('Erreur serveur');
-        const data = await response.json();
-        codeInput.value = data.code; // Mise à jour du champ input
-      } catch (err) {
-        alert('Impossible de récupérer le code. ⚡');
-        console.error(err);
-      }
-    });
-  </script>
+    const data = await response.json();
+
+    codeInput.value = data.code;
+
+  } catch (err) {
+    alert('Erreur connexion API ⚡');
+    console.error(err);
+  }
+
+});
+</script>
+
 </body>
 </html>
