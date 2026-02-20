@@ -1,16 +1,64 @@
-<script>
-const btn = document.getElementById('getCodeBtn');
-const input = document.getElementById('codeInput');
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Killua Code Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-btn.addEventListener('click', async () => {
-  try {
-    // Appelle la fonction serverless Vercel
-    const res = await fetch('/api/code');
-    const data = await res.json();
-    input.value = data.code; // Remplit l'input avec 8 chiffres
-  } catch (err) {
-    console.error(err);
-    alert('Erreur serveur 😢');
-  }
-});
-</script>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background: purple;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    input {
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 20px;
+      text-align: center;
+      border-radius: 10px;
+      border: none;
+      width: 200px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>KILLUA CODE</h1>
+
+  <button id="getCodeBtn">Générer Code</button>
+  <br/>
+  <input id="codeInput" placeholder="Votre code" readonly />
+
+  <script>
+    const btn = document.getElementById('getCodeBtn');
+    const input = document.getElementById('codeInput');
+
+    btn.addEventListener('click', async () => {
+      try {
+        const res = await fetch('/api/code');
+        const data = await res.json();
+        input.value = data.code;
+      } catch (err) {
+        console.error(err);
+        alert('Erreur serveur 😢');
+      }
+    });
+  </script>
+
+</body>
+</html>
