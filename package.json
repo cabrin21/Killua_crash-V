@@ -5,6 +5,7 @@
   "main": "main.js",
   "type": "commonjs",
   "scripts": {
+    "api": "node server.js"
     "start": "node main.js"
   },
   "author": "KilluaCabrino",
