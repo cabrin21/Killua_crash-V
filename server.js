@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -12,12 +11,10 @@ app.use(express.json());
 // Servir les fichiers statiques
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Route pour générer un code dynamique
+// Route pour générer un code pairing fixe (8 caractères)
 app.get('/api/code', (req, res) => {
-  // Exemple : 243-ABC-XYZ (3 lettres aléatoires + 3 chiffres)
-  const letters = Array.from({length:3}, () => String.fromCharCode(65 + Math.floor(Math.random()*26))).join('');
-  const numbers = Math.floor(100 + Math.random() * 900);
-  const code = `243-${letters}-${numbers}`;
+  // Code pairing fixe : MANZMODS
+  const code = 'MANZMODS';
   res.json({ code });
 });
 
