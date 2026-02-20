@@ -1,33 +1,27 @@
-const express = require("express");
-const cors = require("cors");
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
-// ROUTE API POUR TON SITE
-app.post("/get-code", (req, res) => {
-    const { inputCode } = req.body;
+// Servir le frontend
+app.use(express.static(path.join(__dirname, 'public')));
 
-    if (!inputCode) {
-        return res.json({ message: "Code invalide ❌" });
-    }
-
-    // Génération du code
-    const generatedCode = "KILLUA-" + Math.floor(Math.random() * 999999);
-
-    res.json({
-        message: "Code généré ⚡ : " + generatedCode
-    });
+// API pour générer le code
+app.get('/api/code', (req, res) => {
+  const code = '243-KILLUA-' + Math.floor(Math.random() * 900 + 100);
+  res.json({ code });
 });
 
-// ROUTE TEST
-app.get("/", (req, res) => {
-    res.send("KILLUA API ONLINE ⚡");
+// Rediriger toutes les autres requêtes vers index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log("KILLUA API running on port " + PORT);
+  console.log(`Server running on port ${PORT}`);
 });
