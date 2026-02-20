@@ -2,15 +2,11 @@
   "version": 2,
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "^/api/(.*)",
       "dest": "/api/$1"
     },
     {
-      "src": "/",
-      "dest": "/public/index.html"
-    },
-    {
-      "src": "/(.*)",
+      "src": "^(?!/api).*$",
       "dest": "/public/index.html"
     }
   ]
