@@ -1,32 +1,28 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Route pour générer/valider le code
-app.post('/api/code', (req, res) => {
-  const { code } = req.body;
+// Servir les fichiers statiques depuis "public/"
+app.use(express.static(path.join(__dirname, 'public')));
 
-  if (!code) {
-    return res.status(400).json({ error: 'Aucun code fourni !' });
+// Route pour générer un code pairing de 8 caractères
+app.get('/api/code', (req, res) => {
+  // Exemple : code pairing 8 caractères alphanumériques
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let code = '243-'; // Préfixe fixe
+  for (let i = 0; i < 5; i++) {   // 5 caractères aléatoires pour obtenir 8 au total avec "243"
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-
-  // Exemple de logique : si le code commence par 243, succès
-  if (code.startsWith('243')) {
-    return res.json({ message: `⚡ CODE VALIDE : ${code}` });
-  } else {
-    return res.json({ message: `❌ CODE INVALIDE : ${code}` });
-  }
+  res.json({ code }); // Retour JSON : { code: '243-ABCDE' }
 });
 
-// Route test
-app.get('/', (req, res) => res.send('Server Killua actif ⚡'));
-
+// Démarrage du serveur
 app.listen(PORT, () => {
-  console.log(`Server démarré sur http://localhost:${PORT}`);
+  console.log(`Serveur KILLUA en ligne sur le port ${PORT}`);
 });
