@@ -3,13 +3,20 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
+// 🔓 Autorise GitHub Pages
+app.use(cors({
+  origin: "*",
+  methods: ["GET"]
+}));
+
 app.use(express.json());
 
+// Route test
 app.get("/", (req, res) => {
   res.send("API Killua active ⚡");
 });
 
+// Route pour générer le code
 app.get("/api/code", (req, res) => {
 
   const randomCode = "243" + Math.floor(100000 + Math.random() * 900000);
@@ -21,7 +28,8 @@ app.get("/api/code", (req, res) => {
 
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
+
 app.listen(PORT, () => {
-  console.log("Serveur lancé ⚡");
+  console.log("Serveur Killua lancé ⚡");
 });
