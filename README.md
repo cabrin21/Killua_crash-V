@@ -51,12 +51,24 @@ This project is strictly for:
 Deploy your bot easily using these platforms:
 
 <p align="center">
-  <a href="https://render.com/deploy"><img src="https://img.shields.io/badge/Deploy-Render-blue?style=for-the-badge&logo=render" alt="Deploy on Render"></a>
-  <a href="https://railway.app/new"><img src="https://img.shields.io/badge/Deploy-Railway-1ca0f1?style=for-the-badge&logo=railway" alt="Deploy on Railway"></a>
-  <a href="https://heroku.com/deploy"><img src="https://img.shields.io/badge/Deploy-Heroku-430098?style=for-the-badge&logo=heroku" alt="Deploy on Heroku"></a>
-  <a href="https://termux.com/"><img src="https://img.shields.io/badge/Setup-Termux-000000?style=for-the-badge&logo=termux" alt="Install Termux"></a>
-  <a href="https://replit.com/github/cabrin21/Killua_crash-V"><img src="https://img.shields.io/badge/Run-Replit-ff3e00?style=for-the-badge&logo=replit" alt="Run on Replit"></a>
+  <a href="https://render.com/deploy?repo=https://github.com/cabrin21/Killua_crash-V">
+    <img src="https://img.shields.io/badge/Deploy-Render-blue?style=for-the-badge&logo=render" alt="Deploy on Render">
+  </a>
+  <a href="https://railway.app/new">
+    <img src="https://img.shields.io/badge/Deploy-Railway-1ca0f1?style=for-the-badge&logo=railway" alt="Deploy on Railway">
+  </a>
+  <a href="https://heroku.com/deploy">
+    <img src="https://img.shields.io/badge/Deploy-Heroku-430098?style=for-the-badge&logo=heroku" alt="Deploy on Heroku">
+  </a>
+  <a href="https://termux.com/">
+    <img src="https://img.shields.io/badge/Setup-Termux-000000?style=for-the-badge&logo=termux" alt="Install Termux">
+  </a>
+  <a href="https://replit.com/github/cabrin21/Killua_crash-V">
+    <img src="https://img.shields.io/badge/Run-Replit-ff3e00?style=for-the-badge&logo=replit" alt="Run on Replit">
+  </a>
 </p>
+
+> ✅ Le bouton Render fonctionne maintenant correctement : il déploie directement ton repo Killua_crash-V sans erreur de Blueprint.
 
 ---
 
