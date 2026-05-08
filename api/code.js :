@@ -1,6 +1,0 @@
-// api/code.js
-export default function handler(req, res) {
-  // Génère un code aléatoire à 8 chiffres
-  const code = Math.floor(10000000 + Math.random() * 90000000);
-  res.status(200).json({ code: code.toString() });
-}
